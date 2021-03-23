@@ -19,23 +19,23 @@
 	<link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
-	<header>
+	<header th:replace="fragments/header :: header">
 		<div>header</div>
 	</header>
 	
-	<div>
+	<div class="layout-main">
 		<aside>
-			<nav>
+			<nav th:replace="fragments/sidebar :: nav-sidebar">>
 				<span>menu</span>
 			</nav>
 		</aside>
 		
-		<section>
+		<section layout:fragment="corpo">
 			<div>conteudo principal das páginas</div>
 		</section>
 	</div>
 	
-	<footer>
+	<footer th:replace="fragments/footer :: rodape">
 		<div>footer</div>
 	</footer>
 	
