@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.fabrizioabreu.boot.domain.Departamento;
 import com.fabrizioabreu.boot.service.DepartamentoService;
@@ -45,5 +46,14 @@ public class DepartamentoController {
 	public String editar(Departamento departamento) {
 		service.editar(departamento);
 		return "redirect:/departamentos/cadastrar";
+	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		// Verificando se não tem cargos na lista de cargos, para excluir o departamento.
+		if (!service.departamentoTemCargos(id)) {
+			service.excluir(id);
+		}
+		return listar(model);
 	}
 }

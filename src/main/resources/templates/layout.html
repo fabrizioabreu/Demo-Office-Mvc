@@ -48,6 +48,18 @@
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	    
+	    var url = '';
+	    
+	    // Método para recuperar o valor da URL que temos na tag Button
+	    $('button[id*="btn_"]').click(function() {
+	    	url = "http://localhost:8081/" +$(this).attr('id').split("_")[1];
+	    });
+	    
+	    // Passando URL para modelo de confirmação do modal
+	    $('#ok_confirm').click(function() {
+	    	document.location.href = url;
+	    });
+	    
 		$(function() {
 			$('[data-toggle="popover"]').popover();
 		});
