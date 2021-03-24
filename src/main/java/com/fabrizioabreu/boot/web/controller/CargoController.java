@@ -61,4 +61,16 @@ public class CargoController {
 		attr.addFlashAttribute("success", "Registro atualizado com sucesso.");
 		return "redirect:/cargos/cadastrar";
 	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+		// Verificando se não tem Funcionários na lista de cargos, para excluir o cargo.
+		if (cargoService.cargoTemFuncionarios(id)) {
+			attr.addFlashAttribute("fail", "Cargo não excluído. Possui funcionário(s) vingulado(s).");
+		}else {
+			cargoService.excluir(id);
+			attr.addFlashAttribute("success", "Cargo excluído com sucesso.");
+		}
+		return "redirect:/cargos/listar";
+	}
 }
