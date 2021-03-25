@@ -25,7 +25,9 @@
 	        
 	        <div th:replace="fragments/alert"></div>
 	        
-	            <form th:action="@{/funcionarios/salvar}" th:object="${funcionario}" method="POST">
+	        	 <!-- Mapear qual URL encaminhar por ID: ID==null vai para SALVAR | ID!=null vai para EDITAR -->
+	            <form th:action="${funcionario.id == null} ? @{/funcionarios/salvar} : @{/funcionarios/editar}" 
+	            	  th:object="${funcionario}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Funcionário</label>
@@ -133,7 +135,9 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
+	                <!-- Modificando ID para poder INSERIR ou EDITAR -->
+	                <input type="hidden" id="id" th:field="*{id}"/>
+	                <input type="hidden" id="endereco.id" th:field="*{endereco.id}"/>
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 	            </form>
 	        </div>
