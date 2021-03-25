@@ -17,4 +17,6 @@ void save(Funcionario departamento);
 	List<Funcionario> findAll();
 
 	List<Funcionario> findByNome(String nome);
+
+	List<Funcionario> findByCargoId(Long id);
 }
