@@ -60,7 +60,7 @@
 	                    <div class="form-group col-md-6">
 	                        <label for="dataSaida">Data de Saída</label>
 	                        <input type="date" class="form-control" id="dataSaida" th:field="*{dataSaida}"
-	                               th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'"/>
+	                        	   th:classappend="${#fields.hasErrors('dataSaida')} ? 'is-invalid'" />
 	                        <div class="invalid-feedback">
 								<span th:errors="*{dataSaida}"></span>
 	                        </div>
